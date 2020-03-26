@@ -21,6 +21,8 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 
 /// ROUTES
+app.use('/api/v1', require('./routes/post.routes')); // POST
+app.use('/api/v1', require('./routes/get.routes')); // GET
 app.use('/', (req, res) => {
     res.json({msg : "API of Grupo Logistica Mares Del Sur S.A de C.V"})
 })
