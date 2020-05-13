@@ -12,6 +12,7 @@ const documents = require('../controllers/documents.controllers');
 const request = require('../controllers/requests.controller');
 const events = require('../controllers/events.controllers');
 const carriers = require('../controllers/carrieres.controllers');
+const evidences = require('../controllers/evidences.controller')
 
 // CONFIG
 const destPath = './src/files/' + helper.getYear() + "/" + helper.getDateToDay();
@@ -53,6 +54,7 @@ router.post('/payments/request-file',middlewares.validateToken, upload.single('t
 router.post('/events/event', middlewares.validateToken, events.addEvent)
 router.post('/carriers/carrier', middlewares.validateToken, carriers.addCarrier)
 router.post('/carriers/imagen-monitoring',middlewares.validateToken, upload.single('tImagen'), carriers.addImagenMonitoring)
+router.post('/evidences/evidence',middlewares.validateToken, upload.array('tFile', 10), evidences.addEvidences)
 
 module.exports = router;
 
