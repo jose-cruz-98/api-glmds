@@ -6,7 +6,8 @@ module.exports = () => {
     mongoose.connect(url, {
         useNewUrlParser : true,
         useUnifiedTopology : true,
-        useCreateIndex : true
+        useCreateIndex : true,
+        useFindAndModify : false
     })
     .then(() => console.log('Mongo Connected! on', url))
     .catch(err => console.log('Error in database.js : ', err))

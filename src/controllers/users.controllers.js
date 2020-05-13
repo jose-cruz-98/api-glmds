@@ -27,6 +27,7 @@ exports.singin = async (req, res, next) => {
         res.status(200).json({
             token : token,
             dataUser : {
+                _id : user._id,
                 tName : user.tName + " " + user.tSurname,
                 tTypeUser : user.tTypeUser,
                 tRole : user.tRole,
@@ -54,5 +55,31 @@ exports.singup = async (req ,res ,next) => {
         res.json({"msg":"good"});
     }catch(err){
         console.log("Error in singup : ", err);
+    }
+}
+
+exports.getUserByRole = async(req, res) => {
+    let  query = req.query;
+    try{
+        let users = await ProUsers.aggregate([
+            {
+                $unwind: "$tRole"
+            },
+            {
+                $match: query
+            },{
+                $project : {
+                    tPassword : 0
+                }
+            }
+        ])
+
+        if(Object.keys(users).length === 0){
+            return res.status(404).json({msg : "No se encontraron datos"});
+         }
+ 
+         return res.status(200).json({users});
+    }catch(err){
+        console.log(err)
     }
 }

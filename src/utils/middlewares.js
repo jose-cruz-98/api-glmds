@@ -10,6 +10,7 @@ exports.validateToken = (req, res, next) => {
 
         try {
             isValid = jwt.verify(token, secret);
+            req._idUser = isValid._id
             next();
         } catch (err) {
             res.status(403).json({msg : "Token incorrecto. Inicie sesión nuevamente."});

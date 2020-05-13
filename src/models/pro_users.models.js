@@ -28,7 +28,7 @@ const schema = new Schema({
     },
     tRole : [{
         type : String,
-        enum : ["DIRECCION","ADMINISTRACION","OPERACIONES","RECURSOS HUMANOS","FACTURACION","SISTEMAS"],
+        enum : ["DIRECCION","ADMINISTRACION","OPERACIONES","OPERACIONES EXTERIOR","RECURSOS HUMANOS","FACTURACION","PRIVADO", "ADMINISTRADOR GENERAL","ROOT"],
         required : true
     }],
     tImage : String,
@@ -53,14 +53,14 @@ const model = mongoose.model('pro_users', schema);
 module.exports = model;
 
 // {
-    //         "tName" : "Jose Ernesto", 
-    //         "tSurname" : "Cruz Miranda",
-    //         "tEmail" : "sistema@gmail.com",
-    //         "tPassword" : "cc97819347e032ecdff9b52d4a7c1bc09dbc6d2b",
-    //         "tTypeUser" : "ADMINISTRADOR",
-    //         "tRole" : "SISTEMAS",
-    //         "tStatus" : true 
-    //     }
+//             "tName" : "Jose Ernesto", 
+//             "tSurname" : "Cruz Miranda",
+//             "tEmail" : "sistema@gmail.com",
+//             "tPassword" : "cc97819347e032ecdff9b52d4a7c1bc09dbc6d2b",
+//             "tTypeUser" : "ADMINISTRADOR",
+//             "tRole" : "SISTEMAS",
+//             "tStatus" : true 
+//         }
     
     // {
     // 	"tEmail" : "comercial@logisticamaresdelsur.com",
