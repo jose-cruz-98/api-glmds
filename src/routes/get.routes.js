@@ -9,7 +9,8 @@ const documents = require('../controllers/documents.controllers');
 const request = require('../controllers/requests.controller');
 const events = require('../controllers/events.controllers');
 const carriers = require('../controllers/carrieres.controllers');
-const evidences = require('../controllers/evidences.controller')
+const evidences = require('../controllers/evidences.controller');
+const personal = require('../controllers/personals.controllers');
 
 // ROUTES
 const router = express.Router();
@@ -26,4 +27,5 @@ router.get('/payments/payment',middlewares.validateToken, request.getPayments)
 router.get('/events/event', middlewares.validateToken, events.getEvents)
 router.get('/carriers/carrier', middlewares.validateToken, carriers.getCarriers)
 router.get('/evidences/evidence',middlewares.validateToken, evidences.getEvidence)
+router.get('/categories/category', middlewares.validateToken, personal.getCategories)
 module.exports = router;
