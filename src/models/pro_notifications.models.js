@@ -6,6 +6,10 @@ const schema = new Schema({
         type : Schema.Types.ObjectId,
         ref : 'pro_users'
     },
+    _tUserTo : {
+        type : Schema.Types.ObjectId,
+        ref : 'pro_users'
+    },
     tRole : [{
         type : String,
         enum : ["DIRECCION","ADMINISTRACION","OPERACIONES","RECURSOS HUMANOS","FACTURACION","SISTEMAS","PRIVADO", "ADMINISTRADOR GENERAL"],
@@ -23,11 +27,12 @@ const schema = new Schema({
         type:String,
         required:true
     },
-    aSeenBy : [{
+    tAlert : String,
+    _tReference : {
         type : Schema.Types.ObjectId,
-        ref : 'pro_users'
-    }],
-    tAlert : String
+        ref : 'pro_import_references'
+    },
+    tReference : String
 
 });
 

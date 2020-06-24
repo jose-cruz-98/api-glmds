@@ -31,10 +31,13 @@ exports.addRequest = async (req, res, next) => {
 
         const notification = {
             _tUser : _idUser,
+            _tUserTo : body._tUserTo,
             tRole : proImportReferences.tPrivate === "TRUE" ? ["PRIVADO"] : ["DIRECCION","ADMINISTRACION","OPERACIONES","RECURSOS HUMANOS","FACTURACION","SISTEMAS","PRIVADO", "ADMINISTRADOR GENERAL"],
-            tMessage : `${proUser.tName} ${proUser.tSurname} ha solicitado un "${body.tTypePayment}" a ${proUserTo.tName} ${proUserTo.tSurname}.`,
+            tMessage : `${proUser.tName} ${proUser.tSurname} ha solicitado un "${body.tTypePayment}" a ${proUserTo.tName} ${proUserTo.tSurname} para la referencia ${proImportReferences.tReference}.`,
             tGoTo : "/ls/import/payments",
             dRegistered : helper.getDayAndHour(),
+            _tReference : proImportReferences._id,
+            tReference : proImportReferences.tReference
         }
 
         const proRequests = new ProRequests(body);
@@ -82,9 +85,7 @@ exports.delRequest = async(req, res) => {
     try{
         let request = await ProRequests.find({_id : id});
 
-        console.log(request)
-
-        let uris = request[0].aAttached;
+        let uris = request[0].aAttachedFrom;
 
         if(Object.keys(uris).length !== 0){
             uris.map(async (uri) => {
